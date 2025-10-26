@@ -2,3 +2,5 @@
 #define HEIGHT 720
 #define COLORBIT 32
 #define FPS 60
+
+extern int mouseX, mouseY;
