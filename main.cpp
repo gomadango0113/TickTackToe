@@ -27,14 +27,20 @@ int WinMain(_In_ HINSTANCE hInstance,
         timer++;
 
         char left_side[200];
-        sprintf(left_side, "時間: %d \n マウス：(%d,%d) 、マップの座標：（%d, %d）\n インデックス：%d", 
+        sprintf(left_side, "時間: %d \n マウス：(%d,%d) 、マップの座標：（%d, %d）\n インデックス：%d \n Center: ()", 
             timer / 60, 
             mouseX, mouseY, mouseX - MAP_MARGIN_X, mouseY - MAP_MARGIN_Y,
-            getMapValue(mouseX, mouseY));
+            getMapValue());
         drawText(DrawType::LEFT, 0, 0, 15, left_side, COLOR_BLACK, COLOR_WHITE);
         
         switch (status){
         case GameStatus::WAITING:
+            if (GetMouseInput() & MOUSE_INPUT_LEFT) {
+                drawMapValue(MapStatus::Circle);
+            }
+            else if (GetMouseInput() & MOUSE_INPUT_RIGHT) {
+                drawMapValue(MapStatus::Cross);
+            }
 
             //縦線
             for (int i = 0; i <= CELL_COUNT; i++) {

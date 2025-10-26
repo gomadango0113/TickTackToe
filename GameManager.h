@@ -1,16 +1,30 @@
 #pragma once
 #include "main.h"
 
+struct Location {
+	int x;
+	int y;
+};
+
 enum GameStatus {
 	WAITING, //ゲーム開始待機中
 	RUNNING, //ゲーム中
 	ENDING //ゲーム終了済み
 };
 
+enum MapStatus {
+	Invalid, //無効マス
+	Circle, //○
+	Cross //×
+};
+
 extern int timer; //現在の時間
 extern GameStatus status; //ゲームの状態
 
-int getMapValue(int mouseX, int mouseY);
+Location getMapLocation();
+int getMapValue();
+void setMapValue(MapStatus status);
+void drawMapValue(MapStatus status);
 
 //マップ情報
 const int CELL_SIZE = 100;	
