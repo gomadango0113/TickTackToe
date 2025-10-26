@@ -36,11 +36,13 @@ int WinMain(_In_ HINSTANCE hInstance,
         switch (status){
         case GameStatus::WAITING:
             if (GetMouseInput() & MOUSE_INPUT_LEFT) {
-                drawMapValue(MapStatus::Circle);
+                setMapValue(MapStatus::Circle);
             }
             else if (GetMouseInput() & MOUSE_INPUT_RIGHT) {
-                drawMapValue(MapStatus::Cross);
+                setMapValue(MapStatus::Cross);
             }
+
+            drawMapValue();
 
             //ècê¸
             for (int i = 0; i <= CELL_COUNT; i++) {

@@ -48,29 +48,22 @@ void setMapValue(MapStatus status) {
 	}
 }
 
-void drawMapValue(MapStatus status) {
-	Location loc = getMapLocation();
-	if (loc.x != -1 && loc.y != -1) {
-		setMapValue(status);
+void drawMapValue() {
+	for (int x = 0; x < 3; x++) {
+		for (int y = 0; y < 3; y++) {
+			//今いる場所の左と右の座標を割り出す
+			int leftX = MAP_MARGIN_X + (CELL_SIZE * x), leftY = MAP_MARGIN_Y + (CELL_SIZE * y);
+			int rightX = leftX + CELL_SIZE, rightY = leftY + CELL_SIZE;
 
-		//インデックス計算
-		int x = mouseX - MAP_MARGIN_X, y = mouseY - MAP_MARGIN_Y;
-		int map_indexX = (x / CELL_SIZE), map_indexY = (y / CELL_SIZE);
+			//センター
+			int centerX = leftX + (CELL_SIZE / 2) + (BOX_SIZE / 2), centerY = leftY + (CELL_SIZE / 2) + (BOX_SIZE / 2);
 
-		//今いる場所の左と右の座標を割り出す
-		int leftX = MAP_MARGIN_X + (CELL_SIZE * map_indexX), leftY = MAP_MARGIN_Y + (CELL_SIZE * map_indexY);
-		int rightX = leftX + CELL_SIZE, rightY = leftY + CELL_SIZE;
-
-		//センター
-		int centerX = leftX + (CELL_SIZE / 2) + (BOX_SIZE / 2), centerY = leftY + (CELL_SIZE / 2) + (BOX_SIZE / 2);
-
-		DrawFormatString(400, 500, COLOR_WHITE, "%d %d", centerX, centerY);
-		if (status == MapStatus::Circle) {
-			drawText(DrawType::CENTER, centerX, centerY, 50, "○", COLOR_WHITE, COLOR_BLACK);
+			if (MAP[y][x] == MapStatus::Circle) {
+				drawText(DrawType::CENTER, centerX, centerY, 50, "○", COLOR_WHITE, COLOR_BLACK);
+			}
+			else if (MAP[y][x] == MapStatus::Cross) {
+				drawText(DrawType::CENTER, centerX, centerY, 50, "×", COLOR_WHITE, COLOR_BLACK);
+			}
 		}
-		else if (status == MapStatus::Cross) {
-			drawText(DrawType::CENTER, centerX, centerY, 50, "×", COLOR_WHITE, COLOR_BLACK);
-		}
-		
 	}
 }

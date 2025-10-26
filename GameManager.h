@@ -20,11 +20,12 @@ enum MapStatus {
 
 extern int timer; //現在の時間
 extern GameStatus status; //ゲームの状態
+extern int MAP[3][3];
 
 Location getMapLocation();
 int getMapValue();
 void setMapValue(MapStatus status);
-void drawMapValue(MapStatus status);
+void drawMapValue();
 
 //マップ情報
 const int CELL_SIZE = 100;	
