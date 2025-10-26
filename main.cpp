@@ -27,11 +27,31 @@ int WinMain(_In_ HINSTANCE hInstance,
         timer++;
 
         char timer_text[100];
-        sprintf(timer_text, "éûä‘: %d", timer);
+        sprintf(timer_text, "éûä‘: %d", timer / 60);
         drawText(DrawType::LEFT, 0, 0, 15, timer_text, COLOR_BLACK, COLOR_WHITE);
-
+        
         switch (status){
         case GameStatus::WAITING:
+
+            //ècê¸
+            for (int i = 0; i <= CELL_COUNT; i++) {
+                int UpX = MAP_MARGIN_X + (CELL_SIZE * i);
+                int UpY = MAP_MARGIN_Y;
+                int DownX = UpX;
+                int DownY = UpY + (CELL_SIZE * CELL_COUNT) + BOX_SIZE;
+
+                DrawBox(UpX, UpY, DownX + BOX_SIZE, DownY, COLOR_WHITE, 1);
+            }
+
+            //â°ê¸
+            for (int i = 0; i <= CELL_COUNT; i++) {
+                int leftX = MAP_MARGIN_X;
+                int leftY = MAP_MARGIN_Y + (CELL_SIZE * i);
+                int rightX = leftX + (CELL_SIZE * CELL_COUNT) + BOX_SIZE;
+                int rightY = leftY;
+                DrawBox(leftX, leftY, rightX, rightY + BOX_SIZE, COLOR_WHITE, 1);
+            }
+
             break;
         case GameStatus::RUNNING:
             break;
