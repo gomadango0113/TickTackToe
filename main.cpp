@@ -26,9 +26,12 @@ int WinMain(_In_ HINSTANCE hInstance,
         GetMousePoint(&mouseX, &mouseY);
         timer++;
 
-        char timer_text[100];
-        sprintf(timer_text, "時間: %d", timer / 60);
-        drawText(DrawType::LEFT, 0, 0, 15, timer_text, COLOR_BLACK, COLOR_WHITE);
+        char left_side[200];
+        sprintf(left_side, "時間: %d \n マウス：(%d,%d) 、マップの座標：（%d, %d）\n インデックス：%d", 
+            timer / 60, 
+            mouseX, mouseY, mouseX - MAP_MARGIN_X, mouseY - MAP_MARGIN_Y,
+            getMapValue(mouseX, mouseY));
+        drawText(DrawType::LEFT, 0, 0, 15, left_side, COLOR_BLACK, COLOR_WHITE);
         
         switch (status){
         case GameStatus::WAITING:

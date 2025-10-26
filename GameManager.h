@@ -10,6 +10,8 @@ enum GameStatus {
 extern int timer; //現在の時間
 extern GameStatus status; //ゲームの状態
 
+int getMapValue(int mouseX, int mouseY);
+
 //マップ情報
 const int CELL_SIZE = 100;	
 const int CELL_COUNT = 3;
