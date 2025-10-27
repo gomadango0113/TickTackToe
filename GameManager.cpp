@@ -6,6 +6,7 @@ void initGame();
 
 int timer = 0; //Œ»İ‚ÌŠÔ
 GameStatus status = GameStatus::WAITING; //ƒQ[ƒ€‚Ìó‘Ô
+int end_result;
 
 int MAP[3][3] = {
 	{0, 0, 0},
@@ -16,6 +17,11 @@ int MAP[3][3] = {
 void initGame() {
 	timer = 0;
 	status = GameStatus::WAITING;
+	for (int x = 0; x < CELL_COUNT; x++) {
+		for (int y = 0; y < CELL_COUNT; y++) {
+			MAP[y][x] = 0;
+		}
+	}
 }
 
 Location getMapLocation() {
@@ -59,10 +65,10 @@ void drawMapValue() {
 			int centerX = leftX + (CELL_SIZE / 2) + (BOX_SIZE / 2), centerY = leftY + (CELL_SIZE / 2) + (BOX_SIZE / 2);
 
 			if (MAP[y][x] == MapStatus::Circle) {
-				drawText(DrawType::CENTER, centerX, centerY, 50, "›", COLOR_WHITE, COLOR_BLACK);
+				drawText(DrawType::CENTER, centerX, centerY, 50, "›", COLOR_RED, COLOR_WHITE);
 			}
 			else if (MAP[y][x] == MapStatus::Cross) {
-				drawText(DrawType::CENTER, centerX, centerY, 50, "~", COLOR_WHITE, COLOR_BLACK);
+				drawText(DrawType::CENTER, centerX, centerY, 50, "~", COLOR_BLUE, COLOR_WHITE);
 			}
 		}
 	}

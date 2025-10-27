@@ -21,6 +21,7 @@ enum MapStatus {
 extern int timer; //Œ»İ‚ÌŠÔ
 extern GameStatus status; //ƒQ[ƒ€‚Ìó‘Ô
 extern int MAP[3][3];
+extern int end_result;
 
 Location getMapLocation();
 int getMapValue();
